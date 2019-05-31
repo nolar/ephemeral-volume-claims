@@ -1,0 +1,10 @@
+apiVersion: zalando.org/v1
+kind: EphemeralVolumeClaim
+metadata:
+  name: my-claim-2
+spec:
+  size: 1G
+  selector:
+    matchLabels:
+      application: evc-demo
+      evc-claim: my-claim
