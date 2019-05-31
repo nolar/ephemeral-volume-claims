@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  labels:
+    application: evc-demo
+spec:
+  restartPolicy: Never
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: my-claim-1
+  containers:
+  - name: the-only-one
+    image: busybox
+    command: ["sh", "-x", "-c"]
+    args:
+    - |
+      mount | grep /vol
+      sleep 10s
+      #false
+    volumeMounts:
+    - mountPath: /vol
+      name: my-volume
